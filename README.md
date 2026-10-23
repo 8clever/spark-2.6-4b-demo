@@ -33,6 +33,22 @@ Agentic Fashion explores how an AI coding workflow can turn a high-level brief i
 - CSS for shared styling and responsive layouts
 - [Bun](https://bun.sh/) for package management and local development
 
+## The Secret Sauce: A Custom Harness
+
+The key to this project was not just the model itself, but a **custom harness** built around it. The harness made it possible to turn a high-level brief into a cohesive, multi-page storefront while working within a compact local setup.
+
+Instead of relying on a cloud coding model, the project was developed locally with Spark-X2.6-4B Q8. The custom harness was the enabling layer that made this workflow practical.
+
+### Local Model Setup
+
+- **Model:** Spark-X2.6-4B Q8
+- **VRAM:** 6 GB
+- **Observed generation speed:** approximately 10–30 tokens per second
+- **Context window:** 56K tokens
+- **Inference:** local
+
+These are the setup and performance figures used during development of this demo.
+
 ## Run Locally
 
 ### Requirements
@@ -84,4 +100,4 @@ This repository is a frontend demo. The product catalog is defined locally in `s
 
 ## Hackathon Context
 
-Built for **HackAstroN** to demonstrate a multi-page storefront created with an AI-assisted coding workflow using **Spark-X2.6-4B**.
+Built for **HackAstroN** to demonstrate what a small local coding model can achieve when paired with a **custom harness**. The storefront was developed locally with **Spark-X2.6-4B Q8** on **6 GB of VRAM**, at an observed generation speed of **10–30 tokens per second** and a **56K-token context window**.
