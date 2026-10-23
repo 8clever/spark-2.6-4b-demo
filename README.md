@@ -4,6 +4,8 @@
 
 Agentic Fashion explores how an AI coding workflow can turn a high-level brief into a cohesive, multi-page e-commerce frontend. The result is a modern fashion catalog with shared styling, product data, category navigation, and responsive layouts.
 
+[🚀 Live Demo](https://spark-2-6-4b-demo.vercel.app/)
+
 ## Features
 
 - **Homepage** with a hero section, featured products, and category navigation.
