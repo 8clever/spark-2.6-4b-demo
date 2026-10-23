@@ -1,0 +1,46 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import StoreLayout from '../../layouts/StoreLayout.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<StoreLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+	<section class="page-head">
+		<div class="page-head__eyebrow">News</div>
+		<h1>Blog</h1>
+		<p class="page-head__subtitle">
+			Stories and updates from the Agentic Fashion team — including news on the AI models shaping modern fashion.
+		</p>
+	</section>
+
+	{posts.length > 0 && (
+		<section>
+			<div class="blog-grid">
+				{posts.map((post) => (
+					<article class="post-card">
+						<a class="post-card__media" href={`/blog/${post.id}/`} aria-label={post.data.title}>
+							{post.data.heroImage && (
+								<Image width={640} height={420} src={post.data.heroImage} alt={post.data.title} />
+							)}
+						</a>
+						<div class="post-card__body">
+							<div class="post-card__meta">
+								<FormattedDate date={post.data.pubDate} />
+							</div>
+							<h2 class="post-card__title">
+								<a href={`/blog/${post.id}/`}>{post.data.title}</a>
+							</h2>
+							<p class="post-card__excerpt">{post.data.description}</p>
+						</div>
+					</article>
+				))}
+			</div>
+		</section>
+	)}
+</StoreLayout>

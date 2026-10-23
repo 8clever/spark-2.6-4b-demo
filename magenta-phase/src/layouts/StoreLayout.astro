@@ -1,0 +1,27 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import '../styles/store.css';
+
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description = 'Agentic Fashion — modern, AI-guided fashion with curated product listings.' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={description} />
+	</head>
+	<body>
+		<Header />
+		<main class="store-main">
+			<slot />
+		</main>
+		<Footer />
+	</body>
+</html>

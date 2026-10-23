@@ -1,0 +1,56 @@
+---
+import StoreLayout from '../layouts/StoreLayout.astro';
+import ProductCard from '../components/ProductCard.astro';
+import { PRODUCTS, SITE_TITLE, SITE_DESCRIPTION, CATEGORIES } from '../consts.ts';
+
+const heroImage = '/products/aurora-overcoat.jpg';
+const featured = PRODUCTS.slice(0, 4);
+
+---
+
+<StoreLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+	<section class="hero">
+		<div class="hero__media">
+			<img src={heroImage} alt="" />
+		</div>
+		<div class="hero__content">
+			<p class="hero__eyebrow">AI-Curated Fashion Collection</p>
+			<h1 class="hero__title">{SITE_TITLE}</h1>
+			<p class="hero__subtitle">
+				Modern, visually crafted pieces — curated product listings that feel made for
+				the way you move through everyday style.
+			</p>
+			<div class="hero__actions">
+				<a href="/shop" class="btn btn--primary btn--lg">Shop All Products</a>
+				<a href="/sale" class="btn btn--ghost btn--lg">On Sale</a>
+			</div>
+		</div>
+	</section>
+
+	<section class="featured">
+		<div class="section-heading section-heading--row">
+			<h2>Featured Products</h2>
+			<a href="/shop" class="link-arrow">View all →</a>
+		</div>
+		<div class="product-grid">
+			{featured.map((product) => (
+				<ProductCard product={product} />
+			))}
+		</div>
+	</section>
+
+	<section>
+		<div class="section-heading">Shop by Category</div>
+		<div class="category-tiles">
+			{CATEGORIES.map((category) => {
+				const count = PRODUCTS.filter((p) => p.category === category).length;
+				return (
+					<a href={`/products/${category}`} class="category-tile">
+						<span class="category-tile__name">{category}</span>
+						<span class="category-tile__count">{count} items</span>
+					</a>
+				);
+			})}
+		</div>
+	</section>
+</StoreLayout>

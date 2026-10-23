@@ -1,0 +1,93 @@
+---
+import StoreLayout from '../../layouts/StoreLayout.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { PRODUCTS, SITE_TITLE, SITE_DESCRIPTION } from '../../consts.ts';
+
+interface Props {
+	id: string;
+}
+
+export const getStaticPaths = (): ASTRO.PathConfig[] =>
+	PRODUCTS.map((product) => ({
+		params: { id: product.id },
+		props: { id: product.id },
+	}));
+
+const { id } = Astro.props;
+const product = PRODUCTS.find((item) => item.id === id);
+
+// Related pieces: prefer the same category, then any other product.
+const related =
+	PRODUCTS.filter((item) => item.id !== id && (item.category === product?.category || !product)).slice(0, 4);
+
+const fallbackRelated = PRODUCTS.filter((item) => item.id !== id).slice(0, 4);
+const relatedFinal = related.length >= 4 ? related : [...related, ...fallbackRelated].slice(0, 4);
+---
+
+{product ? (
+	<StoreLayout title={product.title} description={product.description}>
+		<nav class="breadcrumbs" aria-label="Breadcrumb">
+			<a href="/">Home</a>
+			<span class="breadcrumbs__sep">/</span>
+			<a href="/shop">Shop</a>
+			<span class="breadcrumbs__sep">/</span>
+			<a href={`/products/${product.category}`}>{product.category}</a>
+			<span class="breadcrumbs__sep">/</span>
+			<span>{product.title}</span>
+		</nav>
+
+		<div class="detail">
+			<div class="detail__media">
+				<img src={product.image} alt={product.title} />
+			</div>
+			<div class="detail__info">
+				<div class="detail__meta">
+					{product.badge && <span class="badge badge--accent">{product.badge}</span>}
+					<p class="detail__meta-label">{product.category}</p>
+				</div>
+				<h1 class="detail__title">{product.title}</h1>
+				<p class="detail__desc">{product.description}</p>
+				<div class="price-block">
+					<div class="price">
+						{product.compareAtPrice ? (
+							<>
+								<span class="price-old">${product.compareAtPrice}</span>
+								<span class="price-now">${product.price}</span>
+							</>
+						) : (
+							<span class="price-now">${product.price}</span>
+						)}
+					</div>
+					{product.compareAtPrice && product.compareAtPrice - product.price > 0 && (
+						<span class="save">Save ${product.compareAtPrice - product.price}</span>
+					)}
+				</div>
+				<div class="detail__buy">
+					<a href="/cart" class="btn btn--primary btn--lg">Add to Cart</a>
+					<a href="/shop" class="btn--ghost btn--lg">Continue Shopping</a>
+				</div>
+			</div>
+		</div>
+
+		{relatedFinal.length > 0 && (
+			<section class="related">
+				<div class="section-heading">You may also like</div>
+				<div class="product-grid">
+					{relatedFinal.map((item) => (
+						<ProductCard product={item} />
+					))}
+				</div>
+			</section>
+		)}
+	</StoreLayout>
+) : (
+	<StoreLayout title="Product not found" description={SITE_DESCRIPTION}>
+		<div class="empty-state" style="margin: 3rem 1rem;">
+			<p style="font-size: 1.3rem; font-weight: 600; color: var(--store-ink); margin-bottom: 0.5rem;">
+				We couldn't find that product.
+			</p>
+			<p style="margin: 0;">It may have been removed or the link may be out of date.</p>
+			<a href="/shop" class="btn btn--primary btn--lg">Back to all products</a>
+		</div>
+	</StoreLayout>
+)}

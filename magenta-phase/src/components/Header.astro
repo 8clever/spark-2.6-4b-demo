@@ -1,0 +1,88 @@
+---
+import { SITE_TITLE } from '../consts';
+import HeaderLink from './HeaderLink.astro';
+import { githublink } from './links';
+import GithubIcon from './icons/GithubIcon.astro';
+const menu = [
+	{ link: githublink, title: "Github Repo", Icon: GithubIcon }
+]
+---
+
+<header>
+	<nav>
+		<h2>
+			<a href="/">{SITE_TITLE}</a>
+		</h2>
+		<div class="internal-links">
+			<HeaderLink href="/">Home</HeaderLink>
+			<HeaderLink href="/shop">Shop</HeaderLink>
+			<HeaderLink href="/blog">Blog</HeaderLink>
+			<HeaderLink href="/about">About</HeaderLink>
+			<HeaderLink href="/sale">Sale</HeaderLink>
+		</div>
+		<div class="social-links">
+			{ menu.map(({ Icon, link, title }) => {
+				return (
+					<a href={link} target="_blank">
+						<span class="sr-only">{title}</span>
+						<Icon />
+					</a>
+				)
+			})}
+		</div>
+	</nav>
+</header>
+<style>
+	header {
+		margin: 0;
+		padding: 0 1em;
+		background: white;
+		box-shadow: 0 2px 8px rgba(var(--black), 5%);
+	}
+	h2 {
+		margin: 0;
+		font-size: 1em;
+	}
+
+	h2 a,
+	h2 a.active {
+		text-decoration: none;
+	}
+	nav {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	nav a {
+		padding: 1em 0.5em;
+		color: var(--black);
+		border-bottom: 4px solid transparent;
+		text-decoration: none;
+	}
+	nav a.active {
+		text-decoration: none;
+		border-bottom-color: var(--accent);
+	}
+	.social-links,
+	.social-links a {
+		display: flex;
+	}
+	@media (max-width: 720px) {
+		h2 {
+			padding: 0.75rem 0;
+		}
+		.social-links {
+			display: none;
+		}
+	}
+	@media (max-width: 360px) {
+		header {
+			padding: 0 0.75rem;
+		}
+		nav a {
+			padding: 0.6rem 0.35rem;
+		}
+	}
+</style>

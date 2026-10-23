@@ -1,0 +1,39 @@
+---
+import type { Product } from '../consts.ts';
+
+interface Props {
+	product: Product;
+}
+
+const { product } = Astro.props;
+const savings = product.compareAtPrice ? product.compareAtPrice - product.price : 0;
+---
+
+<article class="product-card">
+	<div class="product-card__media">
+		<img src={product.image} alt={product.title} loading="lazy" />
+	</div>
+	<div class="product-card__body">
+		<div class="product-card__meta">
+			{product.badge && (
+				<span class="badge badge--accent">{product.badge}</span>
+			)}
+			<h3 class="product-card__title">{product.title}</h3>
+		</div>
+		<div class="product-card__footer">
+			<div class="price">
+				{product.compareAtPrice ? (
+					<>
+						<span class="price-old">${product.compareAtPrice}</span>
+						<span class="price-now">${product.price}</span>
+					</>
+				) : (
+					<span class="price-now">${product.price}</span>
+				)}
+				{product.compareAtPrice && savings > 0 && (
+					<span class="save">Save ${savings}</span>
+				)}
+			</div>
+		</div>
+	</div>
+</article>

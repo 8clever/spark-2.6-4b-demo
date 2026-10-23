@@ -1,0 +1,14 @@
+## POINTERS
+
+- magenta-phase: Astro project (bun run dev, port 4321). Fonts copied from @fontsource packages into src/assets/fonts; Atkinson entry added to astro.config.mjs with cssVariable --font-atkinson (fallbacks serif).
+- DEV SERVER PID 20652 (bun run dev; log process/20649.txt), running, port 4321, HTTP 200 (curl + lightpanda verified). Restarted this iteration (stale about render was stale server; kill + rerun per note).
+- About page fixed (issue 3-change-about → 3-change-about-fixed): /about rewritten (self-description + jokes, centered layout via .about-page/.about-list/.about-hero, responsive 720px) and an added about-hero.jpg banner (public/about-hero.jpg, made by gen-about.mjs); image verified HTTP 200 image/jpeg.
+- Footer upgraded to rich big-black design (issue 1-upgrade-footer fixed, renamed -fixed): black gradient bg + subtle accent glow, brand wordmark/tagline, three link columns (Shop/Support/Company), newsletter signup, social links, copyright; responsive 720px breakpoint.
+- Lightpanda check: `lightpanda fetch --dump markdown http://localhost:4321/...` renders the page; use curl for HTTP status.
+- 5 Agentic Fashion store pages complete (consistent styling via src/styles/store.css, responsive 720/860/1024px breakpoints): home index, /shop all-products, /sale sale listing, /products/[category] category listing (getStaticPaths), /products/[id] product detail (getStaticPaths). Missing /sale and /products routes were the 404 gap.
+- Store CSS (src/styles/store.css) has shared styling: --store-accent #6d4bd1, hero layout, buttons, price cards, detail layout, sale layout, nav etc.
+
+## HOT
+- GOAL COMPLETE (issue 3-change-about fixed): all 5 Agentic Fashion store pages built and verified — / (home), /shop (all products), /sale (sale listing), /products/[category] (category listing via getStaticPaths, e.g. /products/Outerwear), /products/[id] (product detail via getStaticPaths), and /about (rewritten: self-description + jokes, centered layout, about-hero.jpg image). Verified HTTP 200 + clean lightpanda render with content on every page. Shared styling via src/styles/store.css; responsive 720/860/1024px breakpoints.
+- Mobile optimization fixed (issue 4-mobile-optimization → 4-mobile-optimization-fixed): fixed the root cause on `main.store-main` — width:100% now has box-sizing:border-box so horizontal padding no longer extends the width past the 360px viewport (the 376px/360px overflow). Added a `max-width: 360px` media block in store.css tightening main.store-main, hero, sale-hero, product-grid, category-tiles paddings; tightened Header padding at 360; removed the duplicated main.store-main style from StoreLayout; fixed BlogPost main width to 100% + border-box for the /blog/* page. Verified all store pages HTTP 200 + clean lightpanda render.
+- Do NOT use read_media (no visual projection tower).

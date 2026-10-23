@@ -1,0 +1,93 @@
+---
+import StoreLayout from '../layouts/StoreLayout.astro';
+import '../styles/store.css';
+import Hero from '../assets/blog-placeholder-about.jpg';
+---
+<StoreLayout title="About Me" description="I am the UI/UX designer and lead developer behind Agentic Fashion">
+	<div class="about-page">
+		<section class="page-head">
+			<h1>About Me</h1>
+			<p class="page-head__subtitle">
+				I'm the UI/UX designer and lead developer behind Agentic Fashion — the part of
+				this store where the clothes meet the way you actually feel about them. I care
+				about how shopping should feel, so everything here is built to feel like a calm,
+				intentional wardrobe rather than a boring product list.
+			</p>
+		</section>
+
+		<section class="about-hero">
+			<div class="about-hero__media">
+				<img src={Hero.src} alt="A stylized Agentic Fashion garment on an intentional wardrobe-inspired gradient" width="100%" height="auto" loading="eager" />
+			</div>
+			<div class="about-hero__caption">
+				<span class="about-hero__eyebrow">The Agentic Fashion team</span>
+				<p>Design, AI guidance, and the quiet details that make a wardrobe feel like it was made for you.</p>
+			</div>
+		</section>
+
+		<section>
+			<div class="section-heading">Who I work with</div>
+			<ul class="about-list">
+				<li>
+					<h3>UI/UX designer</h3>
+					<p>
+						I focus on the small things that make shopping feel easy and pleasant —
+						layouts, spacing, copy, and the way each product card invites you to look
+						closer. If the site feels like it was made for you, that's the goal.
+					</p>
+				</li>
+				<li>
+					<h3>Lead developer</h3>
+					<p>
+						I build the code behind Agentic Fashion — from product listings and
+						responsive layouts to a clean, consistent store experience that holds up
+						across every view on every device.
+					</p>
+				</li>
+			</ul>
+		</section>
+
+		<section>
+			<div class="section-heading">A little of myself, with jokes</div>
+			<div class="about-jokes">
+				<p>
+					If AI had to write a business plan, it would probably call itself "The Fashion
+					Company" — and honestly, that's basically the whole point of this place. I don't
+					worry about the AI being perfect. I just want it to make clothes that feel like
+					they belong to you.
+				</p>
+				<p>
+					I once designed a checkout flow that accidentally taught the AI to be extra
+					friendly. I think that's the most useful thing the AI could do for you: making
+					the whole process feel a little less like a chore.
+				</p>
+				<p>
+					The reason I love this work is that every product page is a tiny conversation
+					between design and clothing — and it always ends with a better fit.
+				</p>
+			</div>
+		</section>
+
+		<section class="about-cta">
+			<div>
+				<h2>See the collection</h2>
+				<p class="about-cta__text">
+					From outerwear to everyday essentials, the products are built to fit your style
+					and your day.
+				</p>
+			</div>
+			<a href="/shop" class="btn btn--primary btn--lg">Shop All Products</a>
+		</section>
+	</div>
+</StoreLayout>
+<style>
+	.page-head__subtitle,
+	.about-list,
+	.about-jokes
+	{
+		margin: 0 auto 25px;
+	}
+	.about-cta {
+		margin: 75px auto 25px
+	}
+</style>

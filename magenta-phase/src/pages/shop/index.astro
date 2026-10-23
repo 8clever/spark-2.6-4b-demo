@@ -1,0 +1,32 @@
+---
+import StoreLayout from '../../layouts/StoreLayout.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { PRODUCTS, SITE_TITLE, SITE_DESCRIPTION, CATEGORIES } from '../../consts.ts';
+
+const all = PRODUCTS;
+---
+
+<StoreLayout title="All Products" description={SITE_DESCRIPTION}>
+	<header class="page-head">
+		<p class="page-head__eyebrow">The full catalog</p>
+		<h1>All Products</h1>
+		<p class="page-head__subtitle">
+			{all.length} curated pieces — pick the piece that fits your look and the day ahead.
+		</p>
+	</header>
+
+	<section class="shop-toolbar">
+		<div class="filter-chips">
+			<a href="/shop" class="chip chip--active">All</a>
+			{CATEGORIES.map((category) => (
+				<a href={`/products/${category}`} class="chip">{category}</a>
+			))}
+		</div>
+	</section>
+
+	<section class="product-grid">
+		{all.map((product) => (
+			<ProductCard product={product} />
+		))}
+	</section>
+</StoreLayout>

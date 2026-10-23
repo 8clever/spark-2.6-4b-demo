@@ -1,0 +1,1 @@
+Make footer more rich, right not it, i think it is should be like big black stunning footer

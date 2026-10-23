@@ -1,0 +1,52 @@
+---
+import StoreLayout from '../layouts/StoreLayout.astro';
+import ProductCard from '../components/ProductCard.astro';
+import { PRODUCTS, SITE_TITLE, SITE_DESCRIPTION } from '../consts.ts';
+
+const saleProducts = PRODUCTS.filter((product) => product.compareAtPrice);
+const totalSaved = saleProducts.reduce((sum, product) => sum + (product.compareAtPrice! - product.price), 0);
+---
+
+<StoreLayout title={`On Sale — ${SITE_TITLE}`} description={SITE_DESCRIPTION}>
+	<section class="sale-hero">
+		<div class="sale-hero__eyebrow">Limited-time offers</div>
+		<h1>On Sale</h1>
+		<p class="sale-hero__subtitle">
+			Curated pieces at their current price — every discount is a chance to update your
+			look with confidence.
+		</p>
+	</section>
+
+	<div class="sale-stats">
+		<div class="stat">
+			<span class="stat__number">{saleProducts.length}</span>
+			<span class="stat__label">Items on sale</span>
+		</div>
+		<div class="stat">
+			<span class="stat__number">${totalSaved}</span>
+			<span class="stat__label">You could save</span>
+		</div>
+		<div class="stat">
+			<span class="stat__number">{PRODUCTS.length}</span>
+			<span class="stat__label">In this collection</span>
+		</div>
+	</div>
+
+	<section>
+		<div class="section-heading section-heading--row">
+			<h2>Sale Items</h2>
+			<a href="/shop" class="link-arrow">View all products →</a>
+		</div>
+		{saleProducts.length > 0 ? (
+			<div class="product-grid">
+				{saleProducts.map((product) => (
+					<ProductCard product={product} />
+				))}
+			</div>
+		) : (
+			<div class="empty-state">
+				No items are on sale right now — check back soon for new offers.
+			</div>
+		)}
+	</section>
+</StoreLayout>

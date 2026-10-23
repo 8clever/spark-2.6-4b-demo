@@ -1,0 +1,27 @@
+---
+import { cartCount } from './cart.ts';
+const count = cartCount();
+---
+
+<div class="cart-bar" id="cart-bar">
+	<span class="cart-count" data-cart-count={count}>{count}</span>
+	<button type="button" class="cart-count-btn" data-cart-count-btn>Cart</button>
+</div>
+
+<script>
+	const el = document.getElementById('cart-bar');
+	if (!el) return;
+
+	const countEl = el.querySelector('[data-cart-count]');
+	const btnEl = el.querySelector('[data-cart-count-btn]');
+
+	const render = () => {
+		const n = cartCount();
+		if (countEl) countEl.textContent = String(n);
+		if (btnEl) btnEl.textContent = 'Cart (' + n + ')';
+	};
+
+	render();
+	// Keep the badge in sync with cart mutations.
+	setInterval(render, 300);
+</script>

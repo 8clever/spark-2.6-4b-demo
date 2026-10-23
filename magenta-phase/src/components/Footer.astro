@@ -1,0 +1,240 @@
+---
+import SocialLinks from './SocialLinks.astro';
+const today = new Date();
+---
+
+<footer>
+	<div class="footer__top">
+		<div class="footer__brand">
+			<p class="footer__wordmark">Agentic Fashion</p>
+			<p class="footer__tagline">
+				AI-guided fashion — curated, crafted pieces made for the way you live.
+			</p>
+		</div>
+		<nav class="footer__cols">
+			<div class="footer__col">
+				<h3 class="footer__col-title">Shop</h3>
+				<ul class="footer__links">
+					<li><a href="/shop">Shop All Products</a></li>
+					<li><a href="/sale">On Sale</a></li>
+					<li><a href="/products/Outerwear">Outerwear</a></li>
+					<li><a href="/products/Apparel">Apparel</a></li>
+					<li><a href="/products/Accessories">Accessories</a></li>
+					<li><a href="/products/Footwear">Footwear</a></li>
+				</ul>
+			</div>
+			<div class="footer__col">
+				<h3 class="footer__col-title">Support</h3>
+				<ul class="footer__links">
+					<li><a href="/about">Help Center</a></li>
+					<li><a href="/about">Shipping and Returns</a></li>
+					<li><a href="/about">Size Guide</a></li>
+					<li><a href="/about">Contact Us</a></li>
+				</ul>
+			</div>
+			<div class="footer__col">
+				<h3 class="footer__col-title">Company</h3>
+				<ul class="footer__links">
+					<li><a href="/about">About Us</a></li>
+					<li><a href="#">Careers</a></li>
+					<li><a href="#">Sustainability</a></li>
+					<li><a href="#">News</a></li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+	<div class="footer__bottom">
+		<form class="footer__newsletter" aria-label="Newsletter signup">
+			<input type="email" placeholder="Email for new drops" aria-label="Email address" />
+			<button type="submit" class="footer__newsletter-btn">Subscribe</button>
+		</form>
+		<p class="footer__copyright">
+			&copy; {today.getFullYear()} Spark-X2.6-4b. All rights reserved.
+		</p>
+	</div>
+</footer>
+<style>
+	footer {
+		margin-top: 3rem;
+		padding: 3rem 1.25rem 2rem 1.25rem;
+		background:
+			radial-gradient(60% 50% at 50% 0%, rgba(109, 75, 209, 0.18), rgba(109, 75, 209, 0) 72%),
+			linear-gradient(180deg, #000 0%, #0a0a0d 100%);
+		color: rgb(var(--gray));
+		text-align: left;
+		display: grid;
+		grid-template-rows: auto auto;
+		gap: 2rem;
+		box-shadow: 0 -6px 30px rgba(0, 0, 0, 0.35);
+	}
+	.footer__top {
+		display: grid;
+		grid-template-columns: 1.1fr 1.8fr;
+		gap: 2rem;
+		align-items: start;
+	}
+	.footer__brand {
+		display: flex;
+		flex-direction: column;
+		gap: 0.6rem;
+	}
+	.footer__wordmark {
+		margin: 0;
+		font-family: var(--font-atkinson);
+		font-size: 1.9rem;
+		font-weight: 700;
+		letter-spacing: 0.01em;
+		color: rgb(var(--gray-light));
+	}
+	.footer__tagline {
+		margin: 0;
+		max-width: 30ch;
+		font-size: 0.92rem;
+		color: rgb(var(--gray));
+		opacity: 0.82;
+		line-height: 1.5;
+	}
+	.footer__cols {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 2rem;
+	}
+	.footer__col {
+		display: flex;
+		flex-direction: column;
+		gap: 0.65rem;
+		min-width: 0;
+	}
+	.footer__col-title {
+		margin: 0;
+		font-size: 0.76rem;
+		letter-spacing: 0.16em;
+		text-transform: uppercase;
+		color: rgb(var(--gray-dark));
+	}
+	.footer__links {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.6rem;
+	}
+	.footer__links a {
+		color: rgb(var(--gray-light));
+		text-decoration: none;
+		font-size: 0.92rem;
+		transition: color 0.2s ease, padding-left 0.2s ease;
+	}
+	.footer__links a:hover {
+		color: var(--store-accent);
+		padding-left: 0.4rem;
+	}
+	.footer__bottom {
+		border-top: 1px solid rgba(255, 255, 255, 0.08);
+		padding-top: 1.75rem;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1.5rem 2rem;
+		align-items: center;
+		justify-content: space-between;
+	}
+	.footer__newsletter {
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+		max-width: 300px;
+		flex: 0 1 320px;
+	}
+	.footer__newsletter input {
+		flex: 1;
+		min-width: 0;
+		background: rgba(255, 255, 255, 0.04);
+		border: 1px solid rgba(255, 255, 255, 0.14);
+		border-radius: 999px;
+		padding: 0.55rem 1rem;
+		color: rgb(var(--gray-light));
+		font-size: 0.9rem;
+		font-family: var(--font-atkinson);
+		outline: none;
+		transition: border-color 0.2s ease, background 0.2s ease;
+	}
+	.footer__newsletter input::placeholder {
+		color: rgba(var(--gray), 0.6);
+	}
+	.footer__newsletter input:focus {
+		border-color: var(--store-accent);
+		background: rgba(109, 75, 209, 0.08);
+	}
+	.footer__newsletter-btn {
+		flex: 0 0 auto;
+		background: var(--store-accent);
+		color: #ffffff;
+		border: none;
+		border-radius: 999px;
+		padding: 0.55rem 1.2rem;
+		font-size: 0.9rem;
+		font-weight: 600;
+		font-family: var(--font-atkinson);
+		cursor: pointer;
+		transition: background 0.2s ease, transform 0.2s ease;
+	}
+	.footer__newsletter-btn:hover {
+		background: var(--store-accent-dark);
+		transform: translateY(-1px);
+	}
+	.footer__social {
+		display: flex;
+		gap: 0.75rem;
+		flex: 0 1 auto;
+	}
+	.footer__social .social-links {
+		display: flex;
+		gap: 0.65rem;
+	}
+	.footer__social a {
+		color: rgb(var(--gray-light));
+		display: inline-flex;
+		transition: color 0.2s ease, transform 0.2s ease;
+	}
+	.footer__social a:hover {
+		color: var(--store-accent);
+		transform: translateY(-2px);
+	}
+	.footer__copyright {
+		margin: 0;
+		font-size: 0.78rem;
+		color: rgba(var(--gray), 0.6);
+		text-align: right;
+		flex: 0 1 auto;
+	}
+@media (max-width: 720px) {
+	footer {
+		padding: 2rem 1rem 1.5rem 1rem;
+		grid-template-rows: auto 1fr;
+	}
+	.footer__top {
+		grid-template-columns: 1fr;
+		gap: 1.5rem;
+	}
+	.footer__cols {
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1.5rem;
+	}
+	.footer__bottom {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 1rem;
+	}
+	.footer__copyright {
+		text-align: left;
+	}
+	.footer__wordmark {
+		font-size: 1.5rem;
+	}
+	.footer__tagline {
+		max-width: none;
+		font-size: 0.88rem;
+	}
+}
+</style>
